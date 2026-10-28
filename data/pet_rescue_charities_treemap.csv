@@ -1,0 +1,44 @@
+id,parent,name,size_band,n_in_band,n_groups,revenue,volunteers
+root,,All pet rescue charities,,,,,
+Large charities,root,Large charities,Large charities,22,,,
+Medium charities,root,Medium charities,Medium charities,46,,,
+Small charities,root,Small charities,Small charities,543,,,
+L0,Large charities,RSPCA Australia,Large charities,,1,16300299,13
+L1,Large charities,RSPCA ACT,Large charities,,1,6067187,107
+L2,Large charities,Animal Welfare League NSW,Large charities,,1,8419872,165
+L3,Large charities,Sydney Dogs And Cats Home,Large charities,,1,4059925,463
+L4,Large charities,The Cat Protection Society of NSW,Large charities,,1,5112096,150
+L5,Large charities,RSPCA NSW,Large charities,,1,65797000,3005
+L6,Large charities,Animal Welfare League Of Qld,Large charities,,1,22010316,800
+L7,Large charities,RSPCA QLD,Large charities,,1,52675628,1887
+L8,Large charities,Animal Welfare League Of South Australia,Large charities,,1,20805746,400
+L9,Large charities,RSPCA SA,Large charities,,1,20041879,2292
+L10,Large charities,RSPCA TAS,Large charities,,1,3144953,35
+L11,Large charities,Australian Animal Protection Society,Large charities,,1,6025547,204
+L12,Large charities,Cat Protection Society Of Victoria,Large charities,,1,4852542,160
+L13,Large charities,Edgar's Mission,Large charities,,1,3454398,70
+L14,Large charities,Geelong Animal Welfare Society,Large charities,,1,3926602,250
+L15,Large charities,Lort Smith,Large charities,,1,24924072,156
+L16,Large charities,The Lost Dogs' Home,Large charities,,1,24551865,110
+L17,Large charities,RSPCA VIC,Large charities,,1,42717000,1713
+L18,Large charities,Victorian Animal Aid Trust,Large charities,,1,8228499,427
+L19,Large charities,Cat Welfare Society,Large charities,,1,7675442,1640
+L20,Large charities,Dogs Refuge Home WA,Large charities,,1,3570632,467
+L21,Large charities,RSPCA WA,Large charities,,1,11621183,393
+Medium-NSW,Medium charities,NSW,Medium charities,,9,7959422,1368
+Medium-NT,Medium charities,NT,Medium charities,,3,5134909,1089
+Medium-QLD,Medium charities,QLD,Medium charities,,5,5204822,442
+Medium-SA,Medium charities,SA,Medium charities,,2,1399179,362
+Medium-No state listed,Medium charities,No state listed,Medium charities,,3,3945273,556
+Medium-TAS,Medium charities,TAS,Medium charities,,4,6246714,451
+Medium-VIC,Medium charities,VIC,Medium charities,,15,15860547,2244
+Medium-WA,Medium charities,WA,Medium charities,,5,6798654,2195
+Small-ACT,Small charities,ACT,Small charities,,5,648656,197
+Small-NSW,Small charities,NSW,Small charities,,136,13735693,3760
+Small-NT,Small charities,NT,Small charities,,5,210388,82
+Small-QLD,Small charities,QLD,Small charities,,103,12493733,3203
+Small-SA,Small charities,SA,Small charities,,34,4393523,1294
+Small-No state listed,Small charities,No state listed,Small charities,,92,7842681,2075
+Small-TAS,Small charities,TAS,Small charities,,11,1256957,338
+Small-VIC,Small charities,VIC,Small charities,,106,9164251,1978
+Small-WA,Small charities,WA,Small charities,,51,4871300,2757

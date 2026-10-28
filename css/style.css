@@ -1,0 +1,446 @@
+/* =========================================================
+   Every Paw Counts: page styles
+   ========================================================= */
+
+/* ---------- Colours and sizes used across the page ----------
+   Each colour means one thing everywhere: in the charts, in the
+   coloured words in the text, and in the headline numbers. */
+:root {
+  --paper: #fbf9f5;        /* warm off-white background */
+  --card: #ffffff;         /* chart cards sit on top of the paper */
+  --ink: #1f2a24;          /* main text */
+  --ink-soft: #5b5850;     /* secondary text */
+  --rule: #e2ddd3;         /* thin divider lines */
+  --max-width: 1060px;     /* widest the content gets */
+  --text-col: 300px;       /* width of the text column next to a chart */
+  --gap: 40px;             /* space between columns */
+
+  /* Brand colour = rescue groups (purple, same as in the charts) */
+  --rescue: #6250d6;
+  --rescue-text: #4f3dc4;  /* darker version for text, so it is easy to read */
+  --rescue-tint: #efedfb;
+
+  /* Meanings shared with the charts (text versions are darkened for contrast) */
+  --dog: #2a78d6;       --dog-text: #1f63b8;
+  --cat: #eb6834;       --cat-text: #b84a1a;
+  --volunteer: #1b7a5a;
+  --other: #7d776d;     --other-text: #6b655c;
+  --home: #0b5b54;
+  --adopted: #6fb5aa;   --adopted-text: #2b7a70;
+  --passed: #6250d6;
+  --care: #d8d2c7;
+  --euth: #b8412c;      --euth-text: #a3361f;
+  --pound: #b07400;     --pound-text: #8a5a00;
+  --shelter: #d55181;   --shelter-text: #b23a68;
+}
+
+/* ---------- Base text ---------- */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Fraunces", Georgia, serif;
+  font-variation-settings: "SOFT" 100, "WONK" 0;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+}
+h2 { font-size: 2.3rem; font-weight: 700; letter-spacing: -0.01em; }
+h3 { font-size: 1.5rem; font-weight: 650; }
+h4 { font-size: 1.15rem; font-weight: 650; }
+
+p { margin: 0 0 1em; }
+.nowrap { white-space: nowrap; }
+strong { font-weight: 700; }
+a { color: var(--rescue-text); text-underline-offset: 2px; }
+a:hover { color: var(--ink); }
+
+/* ---------- Page width: everything sits in one centred column ---------- */
+.hero-inner, .stats, main > section, footer {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 85% 20%, #e4e0fb 0, transparent 45%),
+    linear-gradient(180deg, var(--rescue-tint) 0%, var(--paper) 100%);
+  border-bottom: 1px solid var(--rule);
+}
+.hero-inner {
+  position: relative;      /* sits above the paw trail */
+  padding-top: 88px;
+  padding-bottom: 64px;
+}
+
+.kicker {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--rescue-text);
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+
+/* The main title: Fraunces at its heaviest, with the SOFT axis turned
+   all the way up (rounded, friendly corners) and WONK on (playful,
+   leaning letters). Display type is only used for this one title. */
+h1 {
+  font-size: clamp(3.2rem, 8vw, 6.2rem);
+  font-weight: 900;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  letter-spacing: -0.025em;
+  line-height: 0.95;
+  margin: 0 0 24px;
+}
+h1 em {
+  font-style: italic;
+  color: var(--rescue-text);
+}
+/* A paw print "stamped" at the end of the title */
+.title-paw {
+  display: inline-block;
+  width: 0.62em;
+  height: 0.62em;
+  margin-left: 0.12em;
+  vertical-align: 0.42em;
+  fill: var(--rescue);
+  opacity: 0.85;
+  transform: rotate(18deg);
+}
+
+.lede {
+  font-size: 1.35rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 32em;
+}
+.byline {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* Paw prints walking across the header */
+.paw-trail svg {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  fill: var(--rescue);
+  opacity: 0.13;
+}
+
+/* =========================================================
+   HEADLINE NUMBERS (four equal columns)
+   ========================================================= */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+.stat {
+  border-top: 5px solid var(--rescue);
+  padding-top: 14px;
+}
+.stat-number {
+  font-family: "Fraunces", Georgia, serif;
+  font-variation-settings: "SOFT" 100, "WONK" 0;
+  font-weight: 800;
+  font-size: 2.6rem;
+  line-height: 1;
+  margin: 0 0 8px;
+}
+.stat-label {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.stat-rescue    { border-color: var(--rescue); }
+.stat-rescue    .stat-number { color: var(--rescue-text); }
+.stat-volunteer { border-color: var(--volunteer); }
+.stat-volunteer .stat-number { color: var(--volunteer); }
+.stat-ink       { border-color: var(--ink); }
+.stat-split     { border-image: linear-gradient(90deg, var(--dog) 50%, var(--cat) 50%) 1; }
+.stat-split .vs { font-size: 0.5em; color: var(--ink-soft); font-weight: 600; }
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+main > section {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  border-top: 1px solid var(--rule);
+}
+
+/* Small label above each heading: paw + section number */
+.section-num {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rescue-text);
+  margin-bottom: 8px;
+}
+.section-num svg { width: 18px; height: 18px; fill: var(--rescue); }
+
+/* ---------- Two-column rows ----------
+   The text column is always the same width, so every row shares
+   the same sight lines down the page. */
+.row {
+  display: grid;
+  grid-template-columns: var(--text-col) 1fr;
+  gap: var(--gap);
+  align-items: start;      /* top of the text lines up with the top of the chart title */
+  margin-top: 32px;
+}
+.row-flip { grid-template-columns: 1fr var(--text-col); }
+
+/* Charts touch the outer edges of the page column, so every chart
+   shares the same left or right sight line as the headings. */
+.row .card      { align-items: flex-end; }
+.row-flip .card { align-items: flex-start; }
+.text p:last-child { margin-bottom: 0; }
+
+/* ---------- Full-width text: one column, about 65 characters a line ---------- */
+.text-wide {
+  max-width: 38em;
+  margin-top: 56px;
+}
+.text-wide p:last-child { margin-bottom: 0; }
+
+/* Small grey notes and captions */
+.note {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* ---------- Chart holders: no box, charts sit straight on the page ----------
+   White space alone separates them from the text. Charts line up with
+   the left edge of the text, so they share the same sight line. */
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-x: auto;        /* never push the page sideways */
+  margin: 0;
+}
+.card-wide { margin-top: 32px; }
+.card figcaption {
+  max-width: 46rem;
+  margin: 12px 0 0;
+}
+
+/* =========================================================
+   COLOURED WORDS: they act as an inline legend for the charts
+   ========================================================= */
+.k { font-weight: 700; }
+.k-swatch { white-space: nowrap; }   /* keep the square with its word */
+.k-rescue    { color: var(--rescue-text); }
+.k-volunteer { color: var(--volunteer); }
+.k-other     { color: var(--other-text); }
+.k-dog       { color: var(--dog-text); }
+.k-cat       { color: var(--cat-text); }
+.k-home      { color: var(--home); }
+.k-adopted   { color: var(--adopted-text); }
+.k-care      { color: var(--other-text); }
+.k-passed    { color: var(--rescue-text); }
+.k-euth      { color: var(--euth-text); }
+.k-pound     { color: var(--pound-text); }
+.k-shelter   { color: var(--shelter-text); }
+.k-rescue-sw { color: var(--rescue-text); }
+
+/* Words with a small colour square in front, matching the chart legend */
+.k-swatch::before {
+  content: "";
+  display: inline-block;
+  width: 0.62em;
+  height: 0.62em;
+  margin-right: 0.3em;
+  border-radius: 2px;
+  vertical-align: 0.02em;
+  background: currentColor;
+}
+.k-home::before      { background: var(--home); }
+.k-adopted::before   { background: var(--adopted); }
+.k-care::before      { background: var(--care); }
+.k-passed::before    { background: var(--passed); }
+.k-euth::before      { background: var(--euth); }
+.k-pound::before     { background: var(--pound); }
+.k-shelter::before   { background: var(--shelter); }
+.k-rescue-sw::before { background: var(--rescue); }
+
+/* =========================================================
+   CALLOUT (pull quote)
+   ========================================================= */
+.callout {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 56px 0 0;
+  padding: 24px 28px;
+  background: var(--rescue-tint);
+  border-left: 6px solid var(--rescue);
+  border-radius: 0 16px 16px 0;
+}
+.callout svg { flex: 0 0 44px; width: 44px; height: 44px; fill: var(--rescue); }
+.callout p {
+  margin: 0;
+  font-family: "Fraunces", Georgia, serif;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.45rem;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+/* =========================================================
+   HOW YOU CAN HELP: four action cards
+   ========================================================= */
+.help-heading { margin-top: 64px; }
+.help-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.help-card {
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-top: 5px solid var(--rescue);
+  border-radius: 14px;
+  padding: 20px;
+}
+.help-card svg { width: 30px; height: 30px; fill: var(--rescue); margin-bottom: 8px; }
+.help-card h4 { margin-bottom: 6px; }
+.help-card p { font-size: 0.95rem; line-height: 1.45; color: var(--ink-soft); margin: 0; }
+/* Same colour, same meaning: volunteering is green, as in the volunteers chart */
+.help-card:nth-child(3) { border-top-color: var(--volunteer); }
+.help-card:nth-child(3) svg { fill: var(--volunteer); }
+
+/* =========================================================
+   VEGA EXTRAS: radio buttons as pill switches, and tooltips
+   ========================================================= */
+.vega-bindings {
+  margin-top: 12px;
+  font-size: 0.95rem;
+}
+.vega-bind-name {
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-right: 8px;
+}
+/* The group of options: one rounded track with a thin outline */
+.vega-embed .vega-bind-radio {
+  display: inline-flex;
+  gap: 2px;
+  background: #ffffff;
+  border: 1.5px solid #d6d0c5;
+  border-radius: 999px;
+  padding: 3px;
+}
+/* Hide the real radio circle but keep it usable with the keyboard */
+.vega-embed .vega-bind-radio input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+}
+/* Options that are NOT picked: plain grey text */
+.vega-embed .vega-bind-radio label {
+  padding: 5px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--ink-soft);
+  font-weight: 600;
+  line-height: 1.3;
+  transition: background 0.15s, color 0.15s;
+}
+.vega-embed .vega-bind-radio label:not(.is-picked):hover {
+  background: var(--rescue-tint);
+  color: var(--ink);
+}
+/* The option that IS picked: solid purple pill, white text and a tick.
+   main.js adds the class "is-picked" to the chosen option's label. */
+.vega-embed .vega-bind-radio label.is-picked {
+  background: var(--rescue-text);
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(79, 61, 196, 0.35);
+  cursor: default;
+}
+.vega-embed .vega-bind-radio label.is-picked::before {
+  content: "\2713";
+  margin-right: 6px;
+}
+/* Keyboard users see an outline on the option they are on */
+.vega-embed .vega-bind-radio input:focus-visible + label,
+.vega-embed .vega-bind-radio label:has(input:focus-visible) {
+  outline: 2px solid var(--rescue);
+  outline-offset: 2px;
+}
+
+#vg-tooltip-element {
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  font-size: 13px;
+  border-radius: 10px;
+  border: 1px solid var(--rule);
+  box-shadow: 0 6px 20px rgba(31, 42, 36, 0.14);
+  padding: 8px 12px;
+}
+#vg-tooltip-element table tr td.key { color: var(--ink-soft); }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer {
+  border-top: 1px solid var(--rule);
+  padding-top: 40px;
+  padding-bottom: 56px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--gap);
+}
+footer h4 { color: var(--ink); }
+footer ul { margin: 0; padding-left: 1.1em; }
+footer li { margin-bottom: 6px; }
+
+/* =========================================================
+   SMALLER SCREENS: stack the columns
+   ========================================================= */
+@media (max-width: 960px) {
+  .row, .row-flip, .footer-grid { grid-template-columns: 1fr; }
+  .row-flip .card { order: 2; }     /* text first, then its chart */
+  .row .card, .row-flip .card { align-items: flex-start; }
+  .stats, .help-grid { grid-template-columns: repeat(2, 1fr); }
+}

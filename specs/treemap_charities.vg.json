@@ -1,0 +1,173 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Treemap of Australia's 611 pet rescue charities, grouped by size. Large charities are shown individually; small and medium charities are combined by state. Area is either yearly income or number of volunteers. Data: ACNC 2023 Annual Information Statements.",
+  "width": 990,
+  "height": 440,
+  "padding": 4,
+  "title": {
+    "text": "Big charities have the money. Small ones have the people",
+    "subtitle": "Each block is one large charity, or one state's small or medium charities combined",
+    "anchor": "start",
+    "frame": "group",
+    "offset": 12
+  },
+
+  "signals": [
+    {
+      "name": "sizeBy",
+      "value": "Money",
+      "bind": {"input": "radio", "options": ["Money", "Volunteers"], "name": "Size blocks by: "}
+    }
+  ],
+
+  "data": [
+    {
+      "name": "charities",
+      "url": "data/pet_rescue_charities_treemap.csv",
+      "format": {"type": "csv", "parse": {"revenue": "number", "volunteers": "number", "n_in_band": "number", "n_groups": "number"}},
+      "transform": [
+        {
+          "type": "formula",
+          "as": "value",
+          "expr": "datum.id === 'root' || datum.parent === 'root' ? 0 : (sizeBy === 'Money' ? datum.revenue : datum.volunteers)"
+        },
+        {"type": "filter", "expr": "datum.id === 'root' || datum.parent === 'root' || datum.value > 0"}
+      ]
+    },
+    {
+      "name": "bandTotals",
+      "source": "charities",
+      "transform": [
+        {"type": "filter", "expr": "datum.parent !== 'root' && datum.id !== 'root'"},
+        {"type": "aggregate", "groupby": ["size_band"], "fields": ["value"], "ops": ["sum"], "as": ["band_value"]},
+        {"type": "joinaggregate", "fields": ["band_value"], "ops": ["sum"], "as": ["all_value"]},
+        {"type": "formula", "as": "share", "expr": "datum.band_value / datum.all_value"}
+      ]
+    },
+    {
+      "name": "tree",
+      "source": "charities",
+      "transform": [
+        {"type": "stratify", "key": "id", "parentKey": "parent"},
+        {
+          "type": "treemap",
+          "field": "value",
+          "sort": {"field": "value", "order": "descending"},
+          "round": true,
+          "method": "squarify",
+          "ratio": 1.4,
+          "paddingInner": 1,
+          "paddingOuter": 0,
+          "paddingTop": 38,
+          "size": [{"signal": "width"}, {"signal": "height"}]
+        }
+      ]
+    },
+    {
+      "name": "bands",
+      "source": "tree",
+      "transform": [
+        {"type": "filter", "expr": "datum.depth === 1"},
+        {"type": "lookup", "from": "bandTotals", "key": "size_band", "fields": ["size_band"], "values": ["share"], "as": ["share"]},
+        {
+          "type": "formula",
+          "as": "label",
+          "expr": "datum.name + ' (' + datum.n_in_band + ')\\n' + format(datum.share, '.0%') + (sizeBy === 'Money' ? ' of the money' : ' of the volunteers')"
+        }
+      ]
+    },
+    {
+      "name": "leaves",
+      "source": "tree",
+      "transform": [{"type": "filter", "expr": "datum.depth === 2"}]
+    }
+  ],
+
+  "scales": [
+    {
+      "name": "bandColour",
+      "type": "ordinal",
+      "domain": ["Large charities", "Medium charities", "Small charities"],
+      "range": ["#3d2f99", "#6250d6", "#a99ff0"]
+    }
+  ],
+
+  "marks": [
+    {
+      "type": "rect",
+      "from": {"data": "bands"},
+      "encode": {
+        "enter": {"fill": {"value": "#efebe4"}},
+        "update": {
+          "x": {"field": "x0"},
+          "y": {"field": "y0"},
+          "x2": {"field": "x1"},
+          "y2": {"field": "y1"}
+        }
+      }
+    },
+    {
+      "type": "rect",
+      "from": {"data": "leaves"},
+      "encode": {
+        "enter": {
+          "fill": {"scale": "bandColour", "field": "size_band"},
+          "stroke": {"value": "#fbf9f5"},
+          "strokeWidth": {"value": 1},
+          "cursor": {"value": "pointer"}
+        },
+        "update": {
+          "x": {"field": "x0"},
+          "y": {"field": "y0"},
+          "x2": {"field": "x1"},
+          "y2": {"field": "y1"},
+          "fillOpacity": {"value": 1},
+          "tooltip": {
+            "signal": "{'Name': datum.n_groups > 1 ? datum.size_band + ' in ' + datum.name : datum.name, 'Number of charities': datum.n_groups, 'Yearly income': '$' + format(datum.revenue, ',.0f'), 'Volunteers': format(datum.volunteers, ',')}"
+          }
+        },
+        "hover": {"fillOpacity": {"value": 0.65}}
+      }
+    },
+    {
+      "type": "text",
+      "from": {"data": "leaves"},
+      "interactive": false,
+      "encode": {
+        "enter": {
+          "fontSize": {"value": 11},
+          "fontWeight": {"value": 600},
+          "baseline": {"value": "top"}
+        },
+        "update": {
+          "x": {"signal": "datum.x0 + 4"},
+          "y": {"signal": "datum.y0 + 4"},
+          "limit": {"signal": "datum.x1 - datum.x0 - 8"},
+          "fill": {"signal": "datum.size_band === 'Small charities' ? '#1f2a24' : '#ffffff'"},
+          "text": {"signal": "(datum.x1 - datum.x0) > 40 && (datum.y1 - datum.y0) > 18 ? (datum.n_groups > 1 ? datum.name + ' · ' + datum.n_groups : datum.name) : ''"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {"data": "bands"},
+      "interactive": false,
+      "encode": {
+        "enter": {
+          "fill": {"value": "#1f2a24"},
+          "fontSize": {"value": 12},
+          "fontWeight": {"value": 600},
+          "baseline": {"value": "top"},
+          "lineBreak": {"value": "\n"},
+          "lineHeight": {"value": 15}
+        },
+        "update": {
+          "x": {"signal": "datum.x0 + 4"},
+          "y": {"signal": "datum.y0 + 5"},
+          "limit": {"signal": "datum.x1 - datum.x0 - 8"},
+          "text": {"field": "label"}
+        }
+      }
+    }
+  ]
+}

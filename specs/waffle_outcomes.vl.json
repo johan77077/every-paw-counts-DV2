@@ -1,0 +1,70 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Nearly half of dogs go home. Only 7 in 100 cats do",
+    "subtitle": "What happened to every 100 dogs and every 100 cats leaving Victorian shelters and pounds, 2025",
+    "anchor": "start"
+  },
+  "data": {"url": "data/waffle_outcomes_per_100.csv"},
+  "transform": [
+    {
+      "calculate": "datum.outcome === 'Adopted from the shelter' ? 'Adopted' : datum.outcome === 'Passed to a rescue group' ? 'Passed on to another group' : datum.outcome",
+      "as": "outcome"
+    }
+  ],
+  "facet": {
+    "column": {
+      "field": "species",
+      "type": "nominal",
+      "sort": ["Dogs", "Cats"],
+      "title": null,
+      "header": {
+        "labelFont": "Fraunces",
+        "labelFontSize": 16,
+        "labelFontWeight": 600,
+        "labelColor": "#1f2a24",
+        "labelAnchor": "start"
+      }
+    }
+  },
+  "spacing": 36,
+  "spec": {
+    "width": 280,
+    "height": 280,
+    "mark": {"type": "rect", "cornerRadius": 3},
+    "encoding": {
+      "x": {"field": "col", "type": "ordinal", "axis": null, "scale": {"paddingInner": 0.15}},
+      "y": {"field": "row", "type": "ordinal", "axis": null, "scale": {"paddingInner": 0.15}},
+      "color": {
+        "field": "outcome",
+        "type": "nominal",
+        "title": null,
+        "scale": {
+          "domain": [
+            "Back home with owner",
+            "Adopted",
+            "Passed on to another group",
+            "Died in care",
+            "Euthanased"
+          ],
+          "range": ["#0b5b54", "#6fb5aa", "#6250d6", "#bdb7ad", "#b8412c"]
+        },
+        "legend": {
+          "orient": "bottom",
+          "direction": "horizontal",
+          "columns": 3,
+          "symbolType": "square",
+          "symbolSize": 140,
+          "labelFontSize": 12
+        }
+      },
+      "tooltip": [
+        {"field": "species", "title": "Animal"},
+        {"field": "outcome", "title": "Outcome"},
+        {"field": "out_of_100", "title": "Out of every 100"},
+        {"field": "animals", "title": "Animals in 2025", "format": ","}
+      ]
+    }
+  },
+  "resolve": {"scale": {"x": "shared", "y": "shared"}}
+}

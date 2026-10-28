@@ -1,0 +1,10 @@
+org_type,species,admitted,fostered,fostered_share
+Animal welfare shelter,All animals,35831,12601,0.3517
+Council pound,All animals,35930,964,0.0268
+Volunteer rescue group,All animals,2581,1570,0.6083
+Animal welfare shelter,Cats,24244,10721,0.4422
+Animal welfare shelter,Dogs,11587,1880,0.1623
+Council pound,Cats,21549,690,0.032
+Council pound,Dogs,14381,274,0.0191
+Volunteer rescue group,Cats,1738,1118,0.6433
+Volunteer rescue group,Dogs,843,452,0.5362

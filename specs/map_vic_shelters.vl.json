@@ -1,0 +1,155 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Five shelters take in two in every five of Victoria's animals",
+    "subtitle": "Each circle is a shelter or pound. Bigger circle = more dogs and cats taken in during 2025",
+    "anchor": "start"
+  },
+  "data": {"url": "data/vic_shelters_2025.csv"},
+  "hconcat": [
+    {
+      "width": 600,
+      "height": 400,
+      "title": {"text": "All of Victoria", "fontSize": 13, "anchor": "start"},
+      "projection": {"type": "conicEqualArea", "parallels": [-36, -38], "rotate": [-145, 0]},
+      "layer": [
+        {
+          "data": {"url": "data/vic_lga.topojson", "format": {"type": "topojson", "feature": "vic_lga"}},
+          "mark": {"type": "geoshape", "fill": "#eeeae3", "stroke": "#ffffff", "strokeWidth": 0.5}
+        },
+        {
+          "mark": {"type": "circle", "stroke": "#ffffff", "strokeWidth": 0.8, "opacity": 0.85},
+          "encoding": {
+            "longitude": {"field": "lon", "type": "quantitative"},
+            "latitude": {"field": "lat", "type": "quantitative"},
+            "size": {
+              "field": "admitted_total",
+              "type": "quantitative",
+              "title": "Dogs and cats taken in",
+              "scale": {"domain": [0, 12000], "range": [6, 2600]},
+              "legend": {
+                "orient": "bottom",
+                "direction": "horizontal",
+                "values": [500, 2000, 5000, 10000],
+                "symbolFillColor": "#bdb7ad",
+                "symbolStrokeWidth": 0,
+                "labelExpr": "format(datum.value, ',')",
+                "titleLimit": 220
+              }
+            },
+            "color": {
+              "field": "org_type",
+              "type": "nominal",
+              "title": "Type of organisation",
+              "scale": {
+                "domain": ["Council pound", "Animal welfare shelter", "Volunteer rescue group", "Other"],
+                "range": ["#b07400", "#d55181", "#6250d6", "#9b958b"]
+              },
+              "legend": {"orient": "bottom", "direction": "horizontal", "columns": 2, "symbolSize": 120}
+            },
+            "order": {"field": "admitted_total", "sort": "descending"},
+            "tooltip": [
+              {"field": "facility", "title": "Shelter"},
+              {"field": "org_type", "title": "Type"},
+              {"field": "town", "title": "Town"},
+              {"field": "admitted_dogs", "title": "Dogs taken in", "format": ","},
+              {"field": "admitted_cats", "title": "Cats taken in", "format": ","},
+              {"field": "left_alive", "title": "Left alive", "format": ".0%"}
+            ]
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "type": "Feature",
+                "geometry": {"type": "LineString", "coordinates": [[144.55, -38.2], [145.55, -38.2], [145.55, -37.45], [144.55, -37.45], [144.55, -38.2]]}
+              }
+            ]
+          },
+          "mark": {"type": "geoshape", "filled": false, "stroke": "#1f2a24", "strokeWidth": 1.8, "strokeDash": [5, 3]}
+        },
+        {
+          "data": {"values": [{"lon": 144.55, "lat": -37.45, "label": "Enlarged at right"}]},
+          "mark": {"type": "text", "align": "left", "baseline": "bottom", "dy": -4, "fontSize": 11, "fontWeight": 600, "color": "#1f2a24"},
+          "encoding": {"longitude": {"field": "lon", "type": "quantitative"}, "latitude": {"field": "lat", "type": "quantitative"}, "text": {"field": "label"}}
+        }
+      ]
+    },
+    {
+      "width": 350,
+      "height": 400,
+      "title": {"text": "Greater Melbourne (dashed box)", "fontSize": 13, "anchor": "start"},
+      "projection": {
+        "type": "conicEqualArea",
+        "parallels": [-36, -38],
+        "rotate": [-145, 0],
+        "fit": {"type": "Feature", "geometry": {"type": "MultiPoint", "coordinates": [[144.55, -38.2], [145.55, -37.45]]}}
+      },
+      "layer": [
+        {
+          "data": {"url": "data/vic_lga.topojson", "format": {"type": "topojson", "feature": "vic_lga"}},
+          "mark": {"type": "geoshape", "fill": "#eeeae3", "stroke": "#ffffff", "strokeWidth": 0.8, "clip": true}
+        },
+        {
+          "transform": [{"filter": "datum.lon >= 144.55 && datum.lon <= 145.55 && datum.lat >= -38.2 && datum.lat <= -37.45"}],
+          "mark": {"type": "circle", "stroke": "#ffffff", "strokeWidth": 0.8, "opacity": 0.85},
+          "encoding": {
+            "longitude": {"field": "lon", "type": "quantitative"},
+            "latitude": {"field": "lat", "type": "quantitative"},
+            "size": {"field": "admitted_total", "type": "quantitative", "scale": {"domain": [0, 12000], "range": [6, 2600]}, "legend": null},
+            "color": {
+              "field": "org_type",
+              "type": "nominal",
+              "scale": {
+                "domain": ["Council pound", "Animal welfare shelter", "Volunteer rescue group", "Other"],
+                "range": ["#b07400", "#d55181", "#6250d6", "#9b958b"]
+              },
+              "legend": null
+            },
+            "order": {"field": "admitted_total", "sort": "descending"},
+            "tooltip": [
+              {"field": "facility", "title": "Shelter"},
+              {"field": "org_type", "title": "Type"},
+              {"field": "town", "title": "Suburb"},
+              {"field": "admitted_dogs", "title": "Dogs taken in", "format": ","},
+              {"field": "admitted_cats", "title": "Cats taken in", "format": ","},
+              {"field": "left_alive", "title": "Left alive", "format": ".0%"}
+            ]
+          }
+        },
+        {
+          "data": {"values": [{"lon": 144.9378, "lat": -37.81, "lon2": 144.9, "lat2": -37.93}]},
+          "mark": {"type": "rule", "color": "#1f2a24", "strokeWidth": 0.8},
+          "encoding": {
+            "longitude": {"field": "lon", "type": "quantitative"},
+            "latitude": {"field": "lat", "type": "quantitative"},
+            "longitude2": {"field": "lon2"},
+            "latitude2": {"field": "lat2"}
+          }
+        },
+        {
+          "data": {"values": [{"lon": 144.9, "lat": -37.93, "note": "Lost Dogs' Home\nNorth Melbourne: 11,621"}]},
+          "mark": {"type": "text", "fontSize": 11, "fontWeight": 600, "color": "#1f2a24", "align": "center", "baseline": "top", "dy": 4, "lineBreak": "\n"},
+          "encoding": {"longitude": {"field": "lon", "type": "quantitative"}, "latitude": {"field": "lat", "type": "quantitative"}, "text": {"field": "note"}}
+        },
+        {
+          "data": {"values": [{"lon": 145.25, "lat": -38.09, "note": "Lost Dogs' Home\nCranbourne: 7,421"}]},
+          "mark": {
+            "type": "text",
+            "fontSize": 11,
+            "fontWeight": 600,
+            "color": "#1f2a24",
+            "align": "right",
+            "baseline": "middle",
+            "dx": -30,
+            "lineBreak": "\n"
+          },
+          "encoding": {"longitude": {"field": "lon", "type": "quantitative"}, "latitude": {"field": "lat", "type": "quantitative"}, "text": {"field": "note"}}
+        }
+      ]
+    }
+  ],
+  "resolve": {"scale": {"size": "independent", "color": "independent"}},
+  "config": {"concat": {"spacing": 28}}
+}

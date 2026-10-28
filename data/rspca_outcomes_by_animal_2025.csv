@@ -1,0 +1,36 @@
+animal,taken_in,outcome,stack_order,animals,share,row_order
+Dogs,15852,Back home with owner,0,3203,0.2021,1
+Dogs,15852,Rehomed,1,6839,0.4314,1
+Dogs,15852,Passed on to another group,3,529,0.0334,1
+Dogs,15852,Still in care,4,1672,0.1055,1
+Dogs,15852,Returned or other,5,841,0.0531,1
+Dogs,15852,Euthanased,6,2768,0.1746,1
+Cats,25639,Back home with owner,0,979,0.0382,2
+Cats,25639,Rehomed,1,16445,0.6414,2
+Cats,25639,Passed on to another group,3,298,0.0116,2
+Cats,25639,Still in care,4,2128,0.083,2
+Cats,25639,Returned or other,5,700,0.0273,2
+Cats,25639,Euthanased,6,5089,0.1985,2
+Horses,537,Back home with owner,0,2,0.0037,4
+Horses,537,Rehomed,1,178,0.3315,4
+Horses,537,Passed on to another group,3,55,0.1024,4
+Horses,537,Still in care,4,181,0.3371,4
+Horses,537,Returned or other,5,9,0.0168,4
+Horses,537,Euthanased,6,112,0.2086,4
+Livestock,1375,Back home with owner,0,30,0.0218,5
+Livestock,1375,Rehomed,1,551,0.4007,5
+Livestock,1375,Passed on to another group,3,185,0.1345,5
+Livestock,1375,Still in care,4,202,0.1469,5
+Livestock,1375,Returned or other,5,77,0.056,5
+Livestock,1375,Euthanased,6,330,0.24,5
+Other small pets,6267,Back home with owner,0,125,0.0199,3
+Other small pets,6267,Rehomed,1,2721,0.4342,3
+Other small pets,6267,Passed on to another group,3,381,0.0608,3
+Other small pets,6267,Still in care,4,1356,0.2164,3
+Other small pets,6267,Returned or other,5,504,0.0804,3
+Other small pets,6267,Euthanased,6,1180,0.1883,3
+Wildlife,27794,Released to the wild,2,2595,0.0934,6
+Wildlife,27794,Passed on to another group,3,5912,0.2127,6
+Wildlife,27794,Still in care,4,200,0.0072,6
+Wildlife,27794,Returned or other,5,1066,0.0384,6
+Wildlife,27794,Euthanased,6,18021,0.6484,6

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Behaviour is the top reason adopted pets come back",
+    "subtitle": "Animals returned to Victorian shelters within 6 months of adoption, 2025",
+    "anchor": "start"
+  },
+  "width": 470,
+  "height": 220,
+  "data": {"url": "data/adoption_returns_2025.csv"},
+  "mark": {"type": "bar", "cornerRadiusEnd": 3},
+  "encoding": {
+    "y": {
+      "field": "reason",
+      "type": "nominal",
+      "sort": "-x",
+      "title": null
+    },
+    "x": {
+      "field": "count",
+      "type": "quantitative",
+      "aggregate": "sum",
+      "title": "Animals returned",
+      "axis": {"grid": false}
+    },
+    "color": {
+      "field": "species",
+      "type": "nominal",
+      "title": null,
+      "scale": {"domain": ["Dogs", "Cats"], "range": ["#2a78d6", "#eb6834"]},
+      "legend": {"orient": "top", "direction": "horizontal"}
+    },
+    "tooltip": [
+      {"field": "reason", "title": "Reason"},
+      {"field": "species", "title": "Animal"},
+      {"field": "count", "title": "Returned"}
+    ]
+  }
+}

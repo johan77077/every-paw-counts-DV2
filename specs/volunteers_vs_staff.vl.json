@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Pet rescue runs on volunteers",
+    "subtitle": "People working in pet rescue charities, by state, 2023",
+    "anchor": "start"
+  },
+  "data": {"url": "data/pet_rescue_people_by_state.csv"},
+  "params": [
+    {
+      "name": "view",
+      "value": "Total people",
+      "bind": {
+        "input": "radio",
+        "options": ["Total people", "Volunteers for every 1 paid worker"],
+        "name": "Show: "
+      }
+    }
+  ],
+  "transform": [
+    {"calculate": "view === 'Total people'", "as": "is_total"},
+    {"calculate": "datum.is_total ? 10000 : 30", "as": "max_value"},
+    {"calculate": "datum.is_total ? datum.paid_staff : 1", "as": "staff_value"},
+    {"calculate": "toNumber(datum.is_total ? datum.volunteers : datum.volunteers_per_paid_staff)", "as": "volunteer_value"},
+    {"calculate": "datum.staff_value / datum.max_value", "as": "staff_length"},
+    {"calculate": "datum.volunteer_value / datum.max_value", "as": "volunteer_length"},
+    {"calculate": "datum.is_total ? format(datum.paid_staff, ',') : '1'", "as": "staff_label"},
+    {"calculate": "datum.is_total ? format(datum.volunteers, ',') : format(datum.volunteers_per_paid_staff, '.1f')", "as": "volunteer_label"}
+  ],
+  "spacing": 0,
+  "hconcat": [
+    {
+      "width": 280,
+      "height": 280,
+      "title": {"text": "Paid staff", "anchor": "end", "fontSize": 13},
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": {"field": "volunteer_value", "order": "descending"},
+          "axis": null
+        },
+        "x": {
+          "field": "staff_length",
+          "type": "quantitative",
+          "scale": {"domain": [0, 1], "reverse": true},
+          "axis": null
+        }
+      },
+      "layer": [
+        {
+          "mark": {"type": "bar", "color": "#7d776d", "cornerRadiusEnd": 3},
+          "encoding": {
+            "tooltip": [
+              {"field": "state", "title": "State"},
+              {"field": "paid_staff", "title": "Paid staff", "format": ","},
+              {"field": "charities", "title": "Pet rescue charities"}
+            ]
+          }
+        },
+        {
+          "mark": {"type": "text", "align": "right", "dx": -4, "fontSize": 11, "color": "#5b5850"},
+          "encoding": {"text": {"field": "staff_label"}}
+        }
+      ]
+    },
+    {
+      "width": 44,
+      "height": 280,
+      "title": {"text": " ", "fontSize": 13},
+      "mark": {"type": "text", "fontSize": 12, "fontWeight": 600, "color": "#1f2a24"},
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": {"field": "volunteer_value", "order": "descending"},
+          "axis": null
+        },
+        "text": {"field": "state"}
+      }
+    },
+    {
+      "width": 280,
+      "height": 280,
+      "title": {"text": "Volunteers", "anchor": "start", "fontSize": 13},
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": {"field": "volunteer_value", "order": "descending"},
+          "axis": null
+        },
+        "x": {
+          "field": "volunteer_length",
+          "type": "quantitative",
+          "scale": {"domain": [0, 1]},
+          "axis": null
+        }
+      },
+      "layer": [
+        {
+          "mark": {"type": "bar", "color": "#1b7a5a", "cornerRadiusEnd": 3},
+          "encoding": {
+            "tooltip": [
+              {"field": "state", "title": "State"},
+              {"field": "volunteers", "title": "Volunteers", "format": ","},
+              {"field": "volunteers_per_paid_staff", "title": "Volunteers per paid worker"}
+            ]
+          }
+        },
+        {
+          "mark": {"type": "text", "align": "left", "dx": 4, "fontSize": 11, "color": "#5b5850"},
+          "encoding": {"text": {"field": "volunteer_label"}}
+        }
+      ]
+    }
+  ],
+  "resolve": {"scale": {"y": "shared"}}
+}

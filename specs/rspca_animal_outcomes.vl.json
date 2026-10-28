@@ -1,0 +1,86 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Rescue isn't just dogs and cats",
+    "subtitle": "What happened to every animal in RSPCA care across Australia in 2024–25, by type of animal",
+    "anchor": "start"
+  },
+  "data": {"url": "data/rspca_outcomes_by_animal_2025.csv"},
+  "width": 810,
+  "height": 270,
+  "transform": [
+    {"calculate": "datum.outcome === 'Rehomed' ? 'Adopted' : datum.outcome", "as": "outcome"},
+    {
+      "stack": "animals",
+      "groupby": ["animal"],
+      "sort": [{"field": "stack_order", "order": "ascending"}],
+      "offset": "normalize",
+      "as": ["start", "end"]
+    },
+    {"calculate": "(datum.start + datum.end) / 2", "as": "middle"},
+    {"calculate": "datum.animal + '  (' + format(datum.taken_in, ',') + ')'", "as": "row_label"}
+  ],
+  "encoding": {
+    "y": {
+      "field": "row_label",
+      "type": "nominal",
+      "title": null,
+      "sort": {"field": "row_order", "op": "min", "order": "ascending"},
+      "axis": {"labelFontSize": 13, "labelColor": "#1f2a24", "domain": false, "ticks": false, "labelPadding": 8}
+    }
+  },
+  "layer": [
+    {
+      "mark": {"type": "bar", "cursor": "pointer"},
+      "encoding": {
+        "x": {
+          "field": "start",
+          "type": "quantitative",
+          "title": null,
+          "scale": {"domain": [0, 1]},
+          "axis": {"format": ".0%", "values": [0, 0.25, 0.5, 0.75, 1], "grid": true, "gridColor": "#ece7de", "domain": false, "ticks": false}
+        },
+        "x2": {"field": "end"},
+        "color": {
+          "field": "outcome",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": [
+              "Back home with owner",
+              "Adopted",
+              "Released to the wild",
+              "Passed on to another group",
+              "Still in care",
+              "Returned or other",
+              "Euthanased"
+            ],
+            "range": ["#0b5b54", "#6fb5aa", "#d9a521", "#6250d6", "#d8d2c7", "#9b958b", "#b8412c"]
+          },
+          "legend": {"orient": "bottom", "direction": "horizontal", "columns": 4, "symbolType": "square", "symbolSize": 140}
+        },
+        "tooltip": [
+          {"field": "animal", "title": "Animal"},
+          {"field": "outcome", "title": "Outcome"},
+          {"field": "share", "title": "Share", "format": ".0%"},
+          {"field": "animals", "title": "Animals", "format": ","}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.share >= 0.08"}],
+      "mark": {"type": "text", "fontSize": 12, "fontWeight": 600},
+      "encoding": {
+        "x": {"field": "middle", "type": "quantitative"},
+        "text": {"field": "share", "format": ".0%"},
+        "color": {
+          "condition": {
+            "test": "datum.outcome === 'Adopted' || datum.outcome === 'Still in care' || datum.outcome === 'Released to the wild'",
+            "value": "#1f2a24"
+          },
+          "value": "#ffffff"
+        }
+      }
+    }
+  ]
+}

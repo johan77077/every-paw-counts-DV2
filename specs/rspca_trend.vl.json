@@ -1,0 +1,67 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Fewer dogs and cats are coming in, but wildlife keeps arriving",
+    "subtitle": "Animals received by the RSPCA across Australia each financial year",
+    "anchor": "start"
+  },
+  "data": {"url": "data/rspca_received_5yr.csv"},
+  "width": 440,
+  "height": 300,
+  "transform": [
+    {
+      "window": [{"op": "first_value", "field": "received", "as": "first_year"}],
+      "sort": [{"field": "year", "order": "ascending"}],
+      "groupby": ["animal_group"],
+      "frame": [null, null]
+    },
+    {"calculate": "(datum.received - datum.first_year) / datum.first_year", "as": "change"}
+  ],
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": null,
+      "axis": {"labelAngle": 0, "domain": false, "ticks": false},
+      "scale": {"padding": 0.2}
+    },
+    "y": {
+      "field": "received",
+      "type": "quantitative",
+      "title": "Animals received",
+      "scale": {"domain": [0, 45000]},
+      "axis": {"format": ",.0f", "grid": true, "gridColor": "#ece7de", "domain": false, "ticks": false, "tickCount": 5}
+    },
+    "color": {
+      "field": "animal_group",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Dogs", "Cats", "Wildlife and other animals"],
+        "range": ["#2a78d6", "#eb6834", "#7d776d"]
+      },
+      "legend": null
+    }
+  },
+  "layer": [
+    {"mark": {"type": "line", "strokeWidth": 3}},
+    {
+      "mark": {"type": "circle", "size": 70, "opacity": 1, "stroke": "#ffffff", "strokeWidth": 1.5, "cursor": "pointer"},
+      "encoding": {
+        "tooltip": [
+          {"field": "animal_group", "title": "Animals"},
+          {"field": "year", "title": "Year"},
+          {"field": "received", "title": "Received", "format": ","},
+          {"field": "change", "title": "Change since 2020–21", "format": "+.0%"}
+        ]
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.year === '2024–25'"},
+        {"calculate": "replace(datum.animal_group, ' animals', '') + ': ' + format(datum.change, '+.0%')", "as": "label"}
+      ],
+      "mark": {"type": "text", "align": "left", "dx": 10, "fontSize": 12, "fontWeight": 600},
+      "encoding": {"text": {"field": "label"}}
+    }
+  ]
+}

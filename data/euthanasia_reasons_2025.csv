@@ -1,0 +1,43 @@
+species,org_type,reason,count,share,org_short
+Dogs,Council pound,"Unidentified, wild or feral (cats only)",0,0.0,Council pounds
+Dogs,Council pound,Behaviour,620,0.515,Council pounds
+Dogs,Council pound,Disease,98,0.081,Council pounds
+Dogs,Council pound,Unsuitable for rehoming,411,0.341,Council pounds
+Dogs,Council pound,Injury,57,0.047,Council pounds
+Dogs,Council pound,Unweaned orphan,3,0.002,Council pounds
+Dogs,Council pound,Age,15,0.012,Council pounds
+Dogs,Animal welfare shelter,"Unidentified, wild or feral (cats only)",0,0.0,Welfare shelters
+Dogs,Animal welfare shelter,Behaviour,446,0.282,Welfare shelters
+Dogs,Animal welfare shelter,Disease,313,0.198,Welfare shelters
+Dogs,Animal welfare shelter,Unsuitable for rehoming,715,0.453,Welfare shelters
+Dogs,Animal welfare shelter,Injury,65,0.041,Welfare shelters
+Dogs,Animal welfare shelter,Unweaned orphan,10,0.006,Welfare shelters
+Dogs,Animal welfare shelter,Age,31,0.02,Welfare shelters
+Dogs,Volunteer rescue group,"Unidentified, wild or feral (cats only)",0,0.0,Rescue groups
+Dogs,Volunteer rescue group,Behaviour,11,0.367,Rescue groups
+Dogs,Volunteer rescue group,Disease,10,0.333,Rescue groups
+Dogs,Volunteer rescue group,Unsuitable for rehoming,4,0.133,Rescue groups
+Dogs,Volunteer rescue group,Injury,2,0.067,Rescue groups
+Dogs,Volunteer rescue group,Unweaned orphan,0,0.0,Rescue groups
+Dogs,Volunteer rescue group,Age,3,0.1,Rescue groups
+Cats,Council pound,"Unidentified, wild or feral (cats only)",3837,0.593,Council pounds
+Cats,Council pound,Behaviour,808,0.125,Council pounds
+Cats,Council pound,Disease,748,0.116,Council pounds
+Cats,Council pound,Unsuitable for rehoming,591,0.091,Council pounds
+Cats,Council pound,Injury,226,0.035,Council pounds
+Cats,Council pound,Unweaned orphan,230,0.036,Council pounds
+Cats,Council pound,Age,26,0.004,Council pounds
+Cats,Animal welfare shelter,"Unidentified, wild or feral (cats only)",2794,0.448,Welfare shelters
+Cats,Animal welfare shelter,Behaviour,1787,0.286,Welfare shelters
+Cats,Animal welfare shelter,Disease,949,0.152,Welfare shelters
+Cats,Animal welfare shelter,Unsuitable for rehoming,11,0.002,Welfare shelters
+Cats,Animal welfare shelter,Injury,300,0.048,Welfare shelters
+Cats,Animal welfare shelter,Unweaned orphan,265,0.042,Welfare shelters
+Cats,Animal welfare shelter,Age,133,0.021,Welfare shelters
+Cats,Volunteer rescue group,"Unidentified, wild or feral (cats only)",37,0.359,Rescue groups
+Cats,Volunteer rescue group,Behaviour,11,0.107,Rescue groups
+Cats,Volunteer rescue group,Disease,52,0.505,Rescue groups
+Cats,Volunteer rescue group,Unsuitable for rehoming,1,0.01,Rescue groups
+Cats,Volunteer rescue group,Injury,0,0.0,Rescue groups
+Cats,Volunteer rescue group,Unweaned orphan,1,0.01,Rescue groups
+Cats,Volunteer rescue group,Age,1,0.01,Rescue groups

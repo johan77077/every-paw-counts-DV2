@@ -1,0 +1,155 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where a lost cat ends up decides its chances",
+    "subtitle": "Share of animals leaving Victorian shelters and pounds alive, by council, 2025",
+    "anchor": "start"
+  },
+  "width": 640,
+  "height": 400,
+  "params": [
+    {
+      "name": "species",
+      "value": "Cats",
+      "bind": {"input": "radio", "options": ["Cats", "Dogs"], "name": "Show: "}
+    }
+  ],
+  "projection": {"type": "conicEqualArea", "parallels": [-36, -38], "rotate": [-145, 0]},
+  "layer": [
+    {
+      "data": {"url": "data/vic_lga.topojson", "format": {"type": "topojson", "feature": "vic_lga"}},
+      "transform": [{"calculate": "'No shelter data'", "as": "status"}],
+      "mark": {"type": "geoshape", "fill": "#e6e2da", "stroke": "#ffffff", "strokeWidth": 0.6},
+      "encoding": {
+        "tooltip": [
+          {"field": "properties.LGA_NAME25", "type": "nominal", "title": "Council"},
+          {"field": "status", "type": "nominal", "title": "Status"}
+        ]
+      }
+    },
+    {
+      "data": {"url": "data/vic_lga.topojson", "format": {"type": "topojson", "feature": "vic_lga"}},
+      "transform": [
+        {
+          "lookup": "properties.LGA_CODE25",
+          "from": {
+            "data": {"url": "data/vic_council_survival_2025.csv", "format": {"parse": {"lga_code": "string"}}},
+            "key": "lga_code",
+            "fields": ["cats_rate", "cats_outcomes", "dogs_rate", "dogs_outcomes", "facilities"]
+          }
+        },
+        {"calculate": "species === 'Cats' ? datum.cats_rate : datum.dogs_rate", "as": "survival"},
+        {"calculate": "species === 'Cats' ? datum.cats_outcomes : datum.dogs_outcomes", "as": "outcomes"},
+        {"filter": "isValid(datum.survival) && datum.outcomes >= 30"}
+      ],
+      "params": [
+        {
+          "name": "hoverCouncil",
+          "select": {"type": "point", "on": "pointerover", "clear": "pointerout", "fields": ["properties.LGA_CODE25"]}
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "#ffffff", "cursor": "pointer"},
+      "encoding": {
+        "color": {
+          "field": "survival",
+          "type": "quantitative",
+          "title": "Left the shelter alive",
+          "scale": {
+            "type": "threshold",
+            "domain": [0.4, 0.6, 0.8, 0.9],
+            "range": ["#7ab9ae", "#529e93", "#318277", "#15655c", "#05433c"]
+          },
+          "legend": {
+            "orient": "bottom",
+            "direction": "horizontal",
+            "type": "symbol",
+            "symbolType": "square",
+            "symbolSize": 180,
+            "symbolStrokeWidth": 0,
+            "format": ".0%",
+            "columns": 5,
+            "columnPadding": 14,
+            "labelFontSize": 12,
+            "title": "Left the shelter alive",
+            "titleOrient": "left",
+            "titlePadding": 12
+          }
+        },
+        "strokeWidth": {"condition": {"param": "hoverCouncil", "empty": false, "value": 2.5}, "value": 0.6},
+        "tooltip": [
+          {"field": "properties.LGA_NAME25", "type": "nominal", "title": "Council"},
+          {"field": "survival", "type": "quantitative", "title": "Left alive", "format": ".0%"},
+          {
+            "field": "outcomes",
+            "type": "quantitative",
+            "title": "Animals with a recorded outcome",
+            "format": ","
+          },
+          {"field": "facilities", "type": "quantitative", "title": "Shelters or pounds in this council"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "from_lon": 145.55,
+            "from_lat": -36.75,
+            "lon": 145.2,
+            "lat": -35.45,
+            "note": "Strathbogie: just 8%"
+          },
+          {"from_lon": 142.3, "from_lat": -34.75, "lon": 143.0, "lat": -34.2, "note": "Mildura: 29%"}
+        ]
+      },
+      "transform": [{"filter": "species === 'Cats'"}],
+      "mark": {"type": "rule", "color": "#7a2e1d", "strokeWidth": 1},
+      "encoding": {
+        "longitude": {"field": "from_lon", "type": "quantitative"},
+        "latitude": {"field": "from_lat", "type": "quantitative"},
+        "longitude2": {"field": "lon"},
+        "latitude2": {"field": "lat"}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "from_lon": 145.55,
+            "from_lat": -36.75,
+            "lon": 145.2,
+            "lat": -35.45,
+            "note": "Strathbogie: just 8%"
+          },
+          {"from_lon": 142.3, "from_lat": -34.75, "lon": 143.0, "lat": -34.2, "note": "Mildura: 29%"}
+        ]
+      },
+      "transform": [{"filter": "species === 'Cats'"}],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "bottom",
+        "dx": 3,
+        "dy": -2,
+        "fontSize": 12,
+        "fontWeight": 600,
+        "color": "#7a2e1d"
+      },
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "text": {"field": "note"}
+      }
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "rect", "color": "#e6e2da", "stroke": "#c9c3b8"},
+      "encoding": {"x": {"value": 516}, "x2": {"value": 530}, "y": {"value": 12}, "y2": {"value": 24}}
+    },
+    {
+      "data": {"values": [{"label": "No shelter data"}]},
+      "mark": {"type": "text", "align": "left", "baseline": "middle", "fontSize": 11, "color": "#5b5850"},
+      "encoding": {"x": {"value": 536}, "y": {"value": 18}, "text": {"field": "label"}}
+    }
+  ]
+}

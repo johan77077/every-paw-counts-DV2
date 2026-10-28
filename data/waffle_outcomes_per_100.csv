@@ -1,0 +1,201 @@
+species,outcome,cell,col,row,out_of_100,animals
+Dogs,Back home with owner,0,0,0,47,13009
+Dogs,Back home with owner,1,1,0,47,13009
+Dogs,Back home with owner,2,2,0,47,13009
+Dogs,Back home with owner,3,3,0,47,13009
+Dogs,Back home with owner,4,4,0,47,13009
+Dogs,Back home with owner,5,5,0,47,13009
+Dogs,Back home with owner,6,6,0,47,13009
+Dogs,Back home with owner,7,7,0,47,13009
+Dogs,Back home with owner,8,8,0,47,13009
+Dogs,Back home with owner,9,9,0,47,13009
+Dogs,Back home with owner,10,0,1,47,13009
+Dogs,Back home with owner,11,1,1,47,13009
+Dogs,Back home with owner,12,2,1,47,13009
+Dogs,Back home with owner,13,3,1,47,13009
+Dogs,Back home with owner,14,4,1,47,13009
+Dogs,Back home with owner,15,5,1,47,13009
+Dogs,Back home with owner,16,6,1,47,13009
+Dogs,Back home with owner,17,7,1,47,13009
+Dogs,Back home with owner,18,8,1,47,13009
+Dogs,Back home with owner,19,9,1,47,13009
+Dogs,Back home with owner,20,0,2,47,13009
+Dogs,Back home with owner,21,1,2,47,13009
+Dogs,Back home with owner,22,2,2,47,13009
+Dogs,Back home with owner,23,3,2,47,13009
+Dogs,Back home with owner,24,4,2,47,13009
+Dogs,Back home with owner,25,5,2,47,13009
+Dogs,Back home with owner,26,6,2,47,13009
+Dogs,Back home with owner,27,7,2,47,13009
+Dogs,Back home with owner,28,8,2,47,13009
+Dogs,Back home with owner,29,9,2,47,13009
+Dogs,Back home with owner,30,0,3,47,13009
+Dogs,Back home with owner,31,1,3,47,13009
+Dogs,Back home with owner,32,2,3,47,13009
+Dogs,Back home with owner,33,3,3,47,13009
+Dogs,Back home with owner,34,4,3,47,13009
+Dogs,Back home with owner,35,5,3,47,13009
+Dogs,Back home with owner,36,6,3,47,13009
+Dogs,Back home with owner,37,7,3,47,13009
+Dogs,Back home with owner,38,8,3,47,13009
+Dogs,Back home with owner,39,9,3,47,13009
+Dogs,Back home with owner,40,0,4,47,13009
+Dogs,Back home with owner,41,1,4,47,13009
+Dogs,Back home with owner,42,2,4,47,13009
+Dogs,Back home with owner,43,3,4,47,13009
+Dogs,Back home with owner,44,4,4,47,13009
+Dogs,Back home with owner,45,5,4,47,13009
+Dogs,Back home with owner,46,6,4,47,13009
+Dogs,Adopted from the shelter,47,7,4,27,7261
+Dogs,Adopted from the shelter,48,8,4,27,7261
+Dogs,Adopted from the shelter,49,9,4,27,7261
+Dogs,Adopted from the shelter,50,0,5,27,7261
+Dogs,Adopted from the shelter,51,1,5,27,7261
+Dogs,Adopted from the shelter,52,2,5,27,7261
+Dogs,Adopted from the shelter,53,3,5,27,7261
+Dogs,Adopted from the shelter,54,4,5,27,7261
+Dogs,Adopted from the shelter,55,5,5,27,7261
+Dogs,Adopted from the shelter,56,6,5,27,7261
+Dogs,Adopted from the shelter,57,7,5,27,7261
+Dogs,Adopted from the shelter,58,8,5,27,7261
+Dogs,Adopted from the shelter,59,9,5,27,7261
+Dogs,Adopted from the shelter,60,0,6,27,7261
+Dogs,Adopted from the shelter,61,1,6,27,7261
+Dogs,Adopted from the shelter,62,2,6,27,7261
+Dogs,Adopted from the shelter,63,3,6,27,7261
+Dogs,Adopted from the shelter,64,4,6,27,7261
+Dogs,Adopted from the shelter,65,5,6,27,7261
+Dogs,Adopted from the shelter,66,6,6,27,7261
+Dogs,Adopted from the shelter,67,7,6,27,7261
+Dogs,Adopted from the shelter,68,8,6,27,7261
+Dogs,Adopted from the shelter,69,9,6,27,7261
+Dogs,Adopted from the shelter,70,0,7,27,7261
+Dogs,Adopted from the shelter,71,1,7,27,7261
+Dogs,Adopted from the shelter,72,2,7,27,7261
+Dogs,Adopted from the shelter,73,3,7,27,7261
+Dogs,Passed to a rescue group,74,4,7,15,4201
+Dogs,Passed to a rescue group,75,5,7,15,4201
+Dogs,Passed to a rescue group,76,6,7,15,4201
+Dogs,Passed to a rescue group,77,7,7,15,4201
+Dogs,Passed to a rescue group,78,8,7,15,4201
+Dogs,Passed to a rescue group,79,9,7,15,4201
+Dogs,Passed to a rescue group,80,0,8,15,4201
+Dogs,Passed to a rescue group,81,1,8,15,4201
+Dogs,Passed to a rescue group,82,2,8,15,4201
+Dogs,Passed to a rescue group,83,3,8,15,4201
+Dogs,Passed to a rescue group,84,4,8,15,4201
+Dogs,Passed to a rescue group,85,5,8,15,4201
+Dogs,Passed to a rescue group,86,6,8,15,4201
+Dogs,Passed to a rescue group,87,7,8,15,4201
+Dogs,Passed to a rescue group,88,8,8,15,4201
+Dogs,Euthanased,89,9,8,11,2907
+Dogs,Euthanased,90,0,9,11,2907
+Dogs,Euthanased,91,1,9,11,2907
+Dogs,Euthanased,92,2,9,11,2907
+Dogs,Euthanased,93,3,9,11,2907
+Dogs,Euthanased,94,4,9,11,2907
+Dogs,Euthanased,95,5,9,11,2907
+Dogs,Euthanased,96,6,9,11,2907
+Dogs,Euthanased,97,7,9,11,2907
+Dogs,Euthanased,98,8,9,11,2907
+Dogs,Euthanased,99,9,9,11,2907
+Cats,Back home with owner,0,0,0,7,3050
+Cats,Back home with owner,1,1,0,7,3050
+Cats,Back home with owner,2,2,0,7,3050
+Cats,Back home with owner,3,3,0,7,3050
+Cats,Back home with owner,4,4,0,7,3050
+Cats,Back home with owner,5,5,0,7,3050
+Cats,Back home with owner,6,6,0,7,3050
+Cats,Adopted from the shelter,7,7,0,44,20429
+Cats,Adopted from the shelter,8,8,0,44,20429
+Cats,Adopted from the shelter,9,9,0,44,20429
+Cats,Adopted from the shelter,10,0,1,44,20429
+Cats,Adopted from the shelter,11,1,1,44,20429
+Cats,Adopted from the shelter,12,2,1,44,20429
+Cats,Adopted from the shelter,13,3,1,44,20429
+Cats,Adopted from the shelter,14,4,1,44,20429
+Cats,Adopted from the shelter,15,5,1,44,20429
+Cats,Adopted from the shelter,16,6,1,44,20429
+Cats,Adopted from the shelter,17,7,1,44,20429
+Cats,Adopted from the shelter,18,8,1,44,20429
+Cats,Adopted from the shelter,19,9,1,44,20429
+Cats,Adopted from the shelter,20,0,2,44,20429
+Cats,Adopted from the shelter,21,1,2,44,20429
+Cats,Adopted from the shelter,22,2,2,44,20429
+Cats,Adopted from the shelter,23,3,2,44,20429
+Cats,Adopted from the shelter,24,4,2,44,20429
+Cats,Adopted from the shelter,25,5,2,44,20429
+Cats,Adopted from the shelter,26,6,2,44,20429
+Cats,Adopted from the shelter,27,7,2,44,20429
+Cats,Adopted from the shelter,28,8,2,44,20429
+Cats,Adopted from the shelter,29,9,2,44,20429
+Cats,Adopted from the shelter,30,0,3,44,20429
+Cats,Adopted from the shelter,31,1,3,44,20429
+Cats,Adopted from the shelter,32,2,3,44,20429
+Cats,Adopted from the shelter,33,3,3,44,20429
+Cats,Adopted from the shelter,34,4,3,44,20429
+Cats,Adopted from the shelter,35,5,3,44,20429
+Cats,Adopted from the shelter,36,6,3,44,20429
+Cats,Adopted from the shelter,37,7,3,44,20429
+Cats,Adopted from the shelter,38,8,3,44,20429
+Cats,Adopted from the shelter,39,9,3,44,20429
+Cats,Adopted from the shelter,40,0,4,44,20429
+Cats,Adopted from the shelter,41,1,4,44,20429
+Cats,Adopted from the shelter,42,2,4,44,20429
+Cats,Adopted from the shelter,43,3,4,44,20429
+Cats,Adopted from the shelter,44,4,4,44,20429
+Cats,Adopted from the shelter,45,5,4,44,20429
+Cats,Adopted from the shelter,46,6,4,44,20429
+Cats,Adopted from the shelter,47,7,4,44,20429
+Cats,Adopted from the shelter,48,8,4,44,20429
+Cats,Adopted from the shelter,49,9,4,44,20429
+Cats,Adopted from the shelter,50,0,5,44,20429
+Cats,Passed to a rescue group,51,1,5,20,9466
+Cats,Passed to a rescue group,52,2,5,20,9466
+Cats,Passed to a rescue group,53,3,5,20,9466
+Cats,Passed to a rescue group,54,4,5,20,9466
+Cats,Passed to a rescue group,55,5,5,20,9466
+Cats,Passed to a rescue group,56,6,5,20,9466
+Cats,Passed to a rescue group,57,7,5,20,9466
+Cats,Passed to a rescue group,58,8,5,20,9466
+Cats,Passed to a rescue group,59,9,5,20,9466
+Cats,Passed to a rescue group,60,0,6,20,9466
+Cats,Passed to a rescue group,61,1,6,20,9466
+Cats,Passed to a rescue group,62,2,6,20,9466
+Cats,Passed to a rescue group,63,3,6,20,9466
+Cats,Passed to a rescue group,64,4,6,20,9466
+Cats,Passed to a rescue group,65,5,6,20,9466
+Cats,Passed to a rescue group,66,6,6,20,9466
+Cats,Passed to a rescue group,67,7,6,20,9466
+Cats,Passed to a rescue group,68,8,6,20,9466
+Cats,Passed to a rescue group,69,9,6,20,9466
+Cats,Passed to a rescue group,70,0,7,20,9466
+Cats,Died in care,71,1,7,1,486
+Cats,Euthanased,72,2,7,28,12822
+Cats,Euthanased,73,3,7,28,12822
+Cats,Euthanased,74,4,7,28,12822
+Cats,Euthanased,75,5,7,28,12822
+Cats,Euthanased,76,6,7,28,12822
+Cats,Euthanased,77,7,7,28,12822
+Cats,Euthanased,78,8,7,28,12822
+Cats,Euthanased,79,9,7,28,12822
+Cats,Euthanased,80,0,8,28,12822
+Cats,Euthanased,81,1,8,28,12822
+Cats,Euthanased,82,2,8,28,12822
+Cats,Euthanased,83,3,8,28,12822
+Cats,Euthanased,84,4,8,28,12822
+Cats,Euthanased,85,5,8,28,12822
+Cats,Euthanased,86,6,8,28,12822
+Cats,Euthanased,87,7,8,28,12822
+Cats,Euthanased,88,8,8,28,12822
+Cats,Euthanased,89,9,8,28,12822
+Cats,Euthanased,90,0,9,28,12822
+Cats,Euthanased,91,1,9,28,12822
+Cats,Euthanased,92,2,9,28,12822
+Cats,Euthanased,93,3,9,28,12822
+Cats,Euthanased,94,4,9,28,12822
+Cats,Euthanased,95,5,9,28,12822
+Cats,Euthanased,96,6,9,28,12822
+Cats,Euthanased,97,7,9,28,12822
+Cats,Euthanased,98,8,9,28,12822
+Cats,Euthanased,99,9,9,28,12822

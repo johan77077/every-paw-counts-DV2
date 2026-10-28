@@ -1,0 +1,92 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Half the cats euthanased had no owner to find",
+    "subtitle": "Reasons animals were euthanased in Victoria in 2025, as a share of each column",
+    "anchor": "start"
+  },
+  "data": {
+    "url": "data/euthanasia_reasons_2025.csv",
+    "format": {"type": "csv", "parse": {"count": "number", "share": "number"}}
+  },
+  "transform": [{"calculate": "datum.count === 0 ? '–' : format(datum.share, '.0%')", "as": "label"}],
+  "facet": {
+    "column": {
+      "field": "species",
+      "type": "nominal",
+      "sort": ["Dogs", "Cats"],
+      "title": null,
+      "header": {
+        "labelFont": "Fraunces",
+        "labelFontSize": 16,
+        "labelFontWeight": 600,
+        "labelColor": "#1f2a24",
+        "labelAnchor": "start"
+      }
+    }
+  },
+  "spacing": 16,
+  "spec": {
+    "width": 360,
+    "height": 260,
+    "encoding": {
+      "x": {
+        "field": "org_short",
+        "type": "nominal",
+        "sort": ["Council pounds", "Welfare shelters", "Rescue groups"],
+        "title": null,
+        "axis": {
+          "orient": "top",
+          "labelAngle": 0,
+          "labelFontSize": 11,
+          "domain": false,
+          "ticks": false,
+          "labelLimit": 140
+        }
+      },
+      "y": {
+        "field": "reason",
+        "type": "nominal",
+        "sort": [
+          "Unidentified, wild or feral (cats only)",
+          "Behaviour",
+          "Disease",
+          "Unsuitable for rehoming",
+          "Injury",
+          "Unweaned orphan",
+          "Age"
+        ],
+        "title": null,
+        "axis": {"domain": false, "ticks": false, "labelFontSize": 12, "labelLimit": 240}
+      }
+    },
+    "layer": [
+      {
+        "mark": {"type": "rect", "stroke": "#fbf9f5", "strokeWidth": 2, "cornerRadius": 3},
+        "encoding": {
+          "color": {
+            "field": "share",
+            "type": "quantitative",
+            "title": "Share of euthanasias",
+            "scale": {"scheme": "reds", "domain": [0, 0.6]},
+            "legend": {"orient": "bottom", "direction": "horizontal", "format": ".0%", "gradientLength": 200}
+          },
+          "tooltip": [
+            {"field": "species", "title": "Animal"},
+            {"field": "org_type", "title": "Organisation"},
+            {"field": "reason", "title": "Reason"},
+            {"field": "count", "title": "Animals", "format": ","},
+            {"field": "share", "title": "Share of this column", "format": ".0%"}
+          ]
+        }
+      },
+      {
+        "mark": {"type": "text", "fontSize": 11},
+        "encoding": {
+          "text": {"field": "label"},
+          "color": {"condition": {"test": "datum.share > 0.35", "value": "#ffffff"}, "value": "#1f2a24"}
+        }
+      }
+    ]
+  }
+}

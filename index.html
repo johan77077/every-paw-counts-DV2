@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Every Paw Counts</title>
+  <meta name="description" content="Who rescues Australia's pets, how they do it, and how you can help. A data story about Australian pet rescue organisations.">
+
+  <!-- Fonts from Google Fonts.
+       Fraunces (with its SOFT and WONK axes) for headings: soft, rounded and a little playful.
+       Source Sans 3 for body text and chart labels: clear at small sizes. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..900,0..100,0..1;1,9..144,400..900,0..100,0..1&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Our own styles -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- The three Vega libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
+</head>
+<body>
+  <!-- One paw-print drawing, reused everywhere with <use href="#paw"> -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="paw" viewBox="0 0 64 64">
+      <path d="M32 33c-9 0-17 8.5-17 16 0 5 4 8 9 8 3.2 0 5.4-1.6 8-1.6s4.8 1.6 8 1.6c5 0 9-3 9-8 0-7.5-8-16-17-16z"/>
+      <ellipse cx="12" cy="27" rx="6" ry="8" transform="rotate(-22 12 27)"/>
+      <ellipse cx="24" cy="14" rx="6.2" ry="8.6" transform="rotate(-8 24 14)"/>
+      <ellipse cx="40" cy="14" rx="6.2" ry="8.6" transform="rotate(8 40 14)"/>
+      <ellipse cx="52" cy="27" rx="6" ry="8" transform="rotate(22 52 27)"/>
+    </symbol>
+  </svg>
+
+  <header class="hero">
+    <!-- A trail of paw prints walking across the header (decoration only) -->
+    <div class="paw-trail" aria-hidden="true">
+      <svg style="left: 54%; top: 78%; transform: rotate(62deg)"><use href="#paw"/></svg>
+      <svg style="left: 60%; top: 62%; transform: rotate(52deg)"><use href="#paw"/></svg>
+      <svg style="left: 64%; top: 70%; transform: rotate(58deg)"><use href="#paw"/></svg>
+      <svg style="left: 70%; top: 50%; transform: rotate(46deg)"><use href="#paw"/></svg>
+      <svg style="left: 74%; top: 58%; transform: rotate(50deg)"><use href="#paw"/></svg>
+      <svg style="left: 80%; top: 36%; transform: rotate(40deg)"><use href="#paw"/></svg>
+      <svg style="left: 84%; top: 44%; transform: rotate(44deg)"><use href="#paw"/></svg>
+      <svg style="left: 90%; top: 22%; transform: rotate(34deg)"><use href="#paw"/></svg>
+      <svg style="left: 94%; top: 30%; transform: rotate(38deg)"><use href="#paw"/></svg>
+    </div>
+
+    <div class="hero-inner">
+      <p class="kicker">Australian pet rescue, by the numbers</p>
+      <h1>Every <em>Paw</em> Counts<svg class="title-paw" aria-hidden="true"><use href="#paw"/></svg></h1>
+      <p class="lede">Hundreds of small, volunteer-run groups work alongside big shelters and council pounds to save Australia's lost and unwanted pets. This is who they are, how they do it, and how you can help.</p>
+      <p class="byline">By Johan Paul · October 2026</p>
+    </div>
+  </header>
+
+  <!-- Four headline numbers, one per column -->
+  <section class="stats" aria-label="Key numbers">
+    <div class="stat stat-rescue">
+      <p class="stat-number">611</p>
+      <p class="stat-label">registered pet rescue charities across Australia</p>
+    </div>
+    <div class="stat stat-volunteer">
+      <p class="stat-number">39,298</p>
+      <p class="stat-label">volunteers: about 10 for every paid worker</p>
+    </div>
+    <div class="stat stat-ink">
+      <p class="stat-number">77,464</p>
+      <p class="stat-label">animals in RSPCA care in <span class="nowrap">2024–25</span></p>
+    </div>
+    <div class="stat stat-split">
+      <p class="stat-number"><span class="k-dog">47</span> <span class="vs">vs</span> <span class="k-cat">7</span></p>
+      <p class="stat-label">in every 100 <span class="k k-dog">dogs</span> and <span class="k k-cat">cats</span> leaving Victorian shelters and pounds go back to their owner</p>
+    </div>
+  </section>
+
+  <main>
+    <!-- 1. WHO RESCUES -->
+    <section id="rescue-network">
+      <p class="section-num"><svg aria-hidden="true"><use href="#paw"/></svg>01 · Who rescues</p>
+      <h2>Australia's rescue network</h2>
+      <div class="row">
+        <div class="text">
+          <p style="margin-bottom: 3em;">When a pet is lost, dumped or surrendered, it is often a small local charity that steps in. Australia has <span class="k k-rescue">611 registered pet rescue charities</span>, from big-city shelters to a handful of volunteers fostering animals in their own homes.</p>
+          <p style="margin-bottom: 3em;">They cluster where people live, but they also reach far beyond the cities, into country towns right across Australia.</p>
+          <p class="note">Hover over a dot to see the group's name. Shows 490 of the 611 charities: the rest have no postcode on the ACNC register. Groups sharing a postcode are spread out slightly so each one is visible. Wildlife carers are not included.</p>
+        </div>
+        <div class="card">
+          <div class="chart" id="chart-rescue-map"></div>
+        </div>
+      </div>
+
+      <div class="text-wide">
+        <p>Most of these groups are tiny. Nine in ten are classed as small charities, and the typical one runs on about $73,000 a year and 15 volunteers. A handful of big names, such as the RSPCA, the Lost Dogs' Home and Lort Smith, hold <strong>three-quarters of all the money</strong>.</p>
+        <p>But money is only half the picture. Switch the chart below to volunteers and the small groups grow: they hold <strong>40% of the people</strong>. Australia's pet rescue depends on both: big shelters with the funds, and small groups with the hands.</p>
+      </div>
+      <figure class="card card-wide">
+        <div class="chart" id="chart-treemap"></div>
+        <figcaption class="note">Hover over a block for its income and volunteers. Large charities are shown one by one; small and medium charities are combined by state. Source: ACNC 2023 Annual Information Statements.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 2. POWERED BY PEOPLE -->
+    <section id="volunteers">
+      <p class="section-num"><svg aria-hidden="true"><use href="#paw"/></svg>02 · The people</p>
+      <h2>Powered by volunteers</h2>
+      <div class="row">
+        <div class="text">
+          <p>Between them, Australia's pet rescue charities have <span class="k k-volunteer">39,298 volunteers</span> and just <span class="k k-other">3,978 paid staff</span>: about 10 volunteers for every paid worker.</p>
+          <p>Four in five have no paid staff at all. They run on people giving their time, and on the public's money: donations make up 53% of their income, and government grants just 7%.</p>
+          <p>Western Australia leans on volunteers the most, with 26 for every paid worker. In the ACT it is just over 3.</p>
+          <p class="note">Switch the view under the chart to compare states fairly. Hover over a bar for details. 95 charities with no state on the ACNC register are counted in the totals above but not in the chart.</p>
+        </div>
+        <div class="card">
+          <div class="chart" id="chart-volunteers-staff"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. WHICH ANIMALS -->
+    <section id="animals">
+      <p class="section-num"><svg aria-hidden="true"><use href="#paw"/></svg>03 · The animals</p>
+      <h2>Which animals they rescue</h2>
+      <div class="row row-flip">
+        <div class="card">
+          <div class="chart" id="chart-rspca-trend"></div>
+        </div>
+        <div class="text">
+          <p>The RSPCA, Australia's largest animal welfare organisation, took in 77,464 animals in 2024–25. That is a quarter fewer than five years earlier.</p>
+          <p>Almost all of the drop is <span class="k k-cat">cats</span> and <span class="k k-dog">dogs</span>: 40% fewer cats and 29% fewer dogs arrived. <span class="k k-other">Wildlife and other animals</span> have barely changed, and now make up nearly half of everything the RSPCA cares for.</p>
+          <p class="note">Hover over a point for the exact numbers. "Wildlife and other animals" includes horses, livestock, birds, rabbits and other small pets.</p>
+        </div>
+      </div>
+
+      <blockquote class="callout">
+        <svg aria-hidden="true"><use href="#paw"/></svg>
+        <p>Every pet that is desexed, microchipped and kept safely at home is one less animal that needs rescuing.</p>
+      </blockquote>
+
+      <div class="text-wide">
+        <p>Each kind of animal leaves care in a different way. Being <span class="k k-swatch k-adopted">adopted</span> is the most common outcome for dogs and cats, and one in five dogs goes <span class="k k-swatch k-home">back home</span> to its owner. Horses, farm animals and small pets like rabbits are more likely to be <span class="k k-swatch k-care">still in care</span> at the end of the year, waiting for the right home.</p>
+        <p>Wildlife is the RSPCA's single biggest group, at 27,794 animals. Most arrive sick or badly injured, so two in three are <span class="k k-swatch k-euth">euthanised</span>. One in five is <span class="k k-swatch k-passed">passed on</span> to other groups, such as specialist wildlife carers.</p>
+      </div>
+      <figure class="card card-wide">
+        <div class="chart" id="chart-animal-types"></div>
+        <figcaption class="note">Hover over a bar for the numbers. Each bar adds to 100% of that animal type; the number beside each name is how many were in RSPCA care during the year. "Still in care" means the animal was still in a shelter or foster home at the end of June 2025. "Other small pets" includes rabbits, guinea pigs, birds, ferrets and mice.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 4. HOW ORGANISATIONS WORK TOGETHER (VICTORIA) -->
+    <section id="victoria">
+      <p class="section-num"><svg aria-hidden="true"><use href="#paw"/></svg>04 · Working together</p>
+      <h2>How rescue organisations work together</h2>
+      <div class="text-wide">
+        <p>Victoria publishes what happened to every dog and cat that passed through its shelters and pounds. In 2025, its 68 <span class="k k-swatch k-pound">council pounds</span>, <span class="k k-swatch k-shelter">animal welfare shelters</span> and <span class="k k-swatch k-rescue-sw">volunteer rescue groups</span> took in 75,440 dogs and cats.</p>
+        <p>Two in five of those animals went to just five places, led by the Lost Dogs' Home in North Melbourne. Most of the others are small council pounds in country towns.</p>
+      </div>
+      <figure class="card card-wide">
+        <div class="chart" id="chart-vic-shelters"></div>
+        <figcaption class="note">Hover over a circle for the shelter's name and numbers. The dashed box on the left map is shown enlarged on the right. Shelter locations are approximate, to the nearest town or suburb.</figcaption>
+      </figure>
+
+      <div class="text-wide">
+        <p>Each type of organisation plays a different part. <span class="k k-pound">Council pounds</span> hold lost animals so their owners can find them. They <span class="k k-swatch k-passed">pass on</span> a third of all their animals (11,777 in 2025) to shelters and rescue groups that can rehome them.</p>
+        <p><span class="k k-rescue">Volunteer rescue groups</span> are often the last stop. They find new homes for 85% of the animals in their care, and euthanase just 5%.</p>
+      </div>
+      <figure class="card card-wide">
+        <div class="chart" id="chart-org-outcomes"></div>
+        <figcaption class="note">Switch between all animals, dogs and cats under the chart. Hover over a bar for the numbers. Bars to the right of the line left alive; bars to the left did not. Vet clinics and breed-specific programs (1,098 animals) are not shown.</figcaption>
+      </figure>
+
+      <div class="row row-flip">
+        <div class="card">
+          <div class="chart" id="chart-foster"></div>
+        </div>
+        <div class="text">
+          <p>How do small groups do it? Foster carers. <span class="k k-rescue">Volunteer rescue groups</span> place 61 of every 100 animals they take in with a foster family, compared with just 3 in 100 at <span class="k k-pound">council pounds</span>.</p>
+          <p>A foster home gives an animal time to settle, lets carers learn its personality, and frees up a pen for the next one. It is one of the easiest ways to help without adopting.</p>
+          <p class="note">Hover over a dot for the numbers. "All" is dogs and cats combined.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. DOGS VS CATS -->
+    <section id="cats">
+      <p class="section-num"><svg aria-hidden="true"><use href="#paw"/></svg>05 · Responsible ownership</p>
+      <h2>Dogs go home, cats don't</h2>
+      <div class="row">
+        <div class="text">
+          <p>What happens to an animal depends a lot on whether it is a <span class="k k-dog">dog</span> or a <span class="k k-cat">cat</span>.</p>
+          <p>Nearly half of all dogs go straight <span class="k k-swatch k-home">back home</span>, often because they are microchipped or registered and their owner can be found. Only 7 in 100 cats are ever reclaimed. For cats, <span class="k k-swatch k-adopted">adoption</span> is the main way out, and 28 in 100 are <span class="k k-swatch k-euth">euthanised</span>.</p>
+          <p class="note">Each square is one in every 100 animals that left a Victorian shelter or pound in 2025. Hover over a square for the exact numbers.</p>
+        </div>
+        <div class="card">
+          <div class="chart" id="chart-waffle"></div>
+        </div>
+      </div>
+
+      <div class="row row-flip">
+        <div class="card">
+          <div class="chart" id="chart-vic-survival"></div>
+        </div>
+        <div class="text">
+          <p>Where a cat ends up matters too. In much of Melbourne, most cats leave alive. In seven country councils, mostly in the north and west, fewer than half do. In Strathbogie, just 8% did.</p>
+          <p>Dogs fare well almost everywhere: switch the map to dogs and nearly every council turns dark.</p>
+          <p class="note">Switch between cats and dogs under the map. Hover over a council for its numbers. "Left alive" means reclaimed by an owner, adopted, or passed on to another group. Figures are counted where the shelter is, not where the animal came from. Grey councils have no shelter of their own, or handled fewer than 30 animals.</p>
+        </div>
+      </div>
+
+      <div class="text-wide">
+        <p>Why are so many cats <span class="k k-euth">euthanised</span>? Half of them had no owner who could be found: they were unidentified, wild or feral.</p>
+        <p>This is where responsible ownership matters most. A microchipped, desexed cat kept safely at home is far less likely to end up in a pound, and far more likely to get home if it does.</p>
+      </div>
+      <figure class="card card-wide">
+        <div class="chart" id="chart-heatmap"></div>
+        <figcaption class="note">Darker squares mean a bigger share of that column's euthanasias. Rescue groups euthanised very few animals (30 dogs and 103 cats), so their percentages are based on small numbers.</figcaption>
+      </figure>
+    </section>
+
+    <!-- 6. HOW TO HELP -->
+    <section id="how-to-help">
+      <p class="section-num"><svg aria-hidden="true"><use href="#paw"/></svg>06 · Your part</p>
+      <h2>How you can help</h2>
+      <div class="row">
+        <div class="text">
+          <p>Adopting is a lifelong promise. In 2025, more than 1,000 animals adopted from Victorian shelters were brought back within six months, most often because of their behaviour.</p>
+          <p>Shelters can help match the right pet to the right home, so ask plenty of questions before you adopt.</p>
+        </div>
+        <div class="card">
+          <div class="chart" id="chart-adoption-returns"></div>
+        </div>
+      </div>
+
+      <h3 class="help-heading">And if you can't adopt, you can still help</h3>
+      <div class="help-grid">
+        <div class="help-card">
+          <svg aria-hidden="true"><use href="#paw"/></svg>
+          <h4>Microchip and desex</h4>
+          <p>The surest way to get a lost pet home, and to keep unwanted litters out of pounds.</p>
+        </div>
+        <div class="help-card">
+          <svg aria-hidden="true"><use href="#paw"/></svg>
+          <h4>Foster</h4>
+          <p>Rescue groups foster 61 in every 100 animals. A spare room can save a life.</p>
+        </div>
+        <div class="help-card">
+          <svg aria-hidden="true"><use href="#paw"/></svg>
+          <h4>Volunteer</h4>
+          <p>Four in five pet rescue charities have no paid staff. They run on people like you.</p>
+        </div>
+        <div class="help-card">
+          <svg aria-hidden="true"><use href="#paw"/></svg>
+          <h4>Donate</h4>
+          <p>Donations are over half of rescue groups' income. Government gives just 7%.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>Data sources</h4>
+        <ul>
+          <li>Australian Charities and Not-for-profits Commission (ACNC). <a href="https://data.gov.au/data/dataset/acnc-2023-annual-information-statement-ais-data">2023 Annual Information Statement data</a> and <a href="https://data.gov.au/data/dataset/acnc-register">ACNC Registered Charities</a>.</li>
+          <li>RSPCA Australia. <a href="https://rspca.org.au/about/annual-statistics">Annual statistics</a>, 2020–21 to 2024–25.</li>
+          <li>Animal Welfare Victoria. <a href="https://agriculture.vic.gov.au/livestock-and-animals/animal-welfare-victoria/domestic-animals-act/animal-fate-data-set">Shelter and pound data</a>, 2025.</li>
+          <li>Australian Bureau of Statistics. <a href="https://www.abs.gov.au/statistics/standards/australian-statistical-geography-standard-asgs-edition-3">ASGS Edition 3 boundaries</a>: States and Territories 2021, Postal Areas 2021, Local Government Areas 2025.</li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <p><strong>Author:</strong> Johan Paul · October 2026</p>
+        <p>Made for FIT3179 Data Visualisation, Monash University. Charts built with Vega-Lite and Vega.</p>
+        <p><strong>AI use:</strong>Claude AI was used to help find and clean data, aid checking and drafting Vega-Lite code. I chose the story and design, tested every chart, and checked all figures against the original sources.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Our script goes last, so the page and the Vega libraries are ready before it runs -->
+  <script src="js/main.js"></script>
+</body>
+</html>

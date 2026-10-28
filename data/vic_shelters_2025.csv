@@ -1,0 +1,69 @@
+facility,org_type,town,lat,lon,admitted_dogs,admitted_cats,admitted_total,left_alive
+The Lost Dogs Home North Melbourne,Animal welfare shelter,North Melbourne,-37.8,144.94,3663,7958,11621,0.681
+The Lost Dogs Home Cranbourne,Animal welfare shelter,Cranbourne West,-38.09,145.25,2267,5154,7421,0.654
+wat djerring Animal Facility (Whittlesea),Council pound,Epping,-37.64,145.02,1142,3456,4598,0.735
+RSPCA Burwood East,Animal welfare shelter,Burwood East,-37.85,145.15,1533,2095,3628,0.801
+Geelong Animal Welfare Society,Animal welfare shelter,Moolap,-38.17,144.42,1252,2029,3281,0.901
+Victorian Animal Aid Trust Coldstream,Animal welfare shelter,Coldstream,-37.72,145.38,1284,1805,3089,0.865
+Brimbank City Council Holding Facility,Council pound,Keilor,-37.72,144.83,842,1926,2768,0.996
+City of Ballarat Animal Shelter,Council pound,Ballarat,-37.56,143.85,1327,1280,2607,0.942
+Wyndham City Council Pound,Council pound,Werribee,-37.9,144.66,773,1693,2466,0.871
+Melton City Council Pound,Council pound,Melton,-37.68,144.58,975,1411,2386,0.805
+Mildura Rural City Council Pound,Council pound,Mildura,-34.19,142.16,974,1190,2164,0.519
+Bendigo Animal Relief Centre,Council pound,Epsom,-36.71,144.32,1079,1024,2103,0.793
+Shepparton Animal Shelter,Council pound,Shepparton,-36.38,145.4,687,1353,2040,0.687
+RSPCA Pearcedale,Animal welfare shelter,Pearcedale,-38.2,145.24,198,1405,1603,0.89
+Cat Protection Society of Victoria,Animal welfare shelter,Greensborough,-37.7,145.1,0,1451,1451,0.937
+Latrobe City Council Pound,Council pound,Morwell,-38.23,146.4,629,721,1350,0.69
+Australian Animal Protection Society,Animal welfare shelter,Keysborough,-37.99,145.17,379,792,1171,0.978
+Mitchell Shire Council Pound,Council pound,Broadford,-37.2,145.05,591,501,1092,0.79
+Greyhound Adoption Program,Other,Seymour,-37.03,145.14,1044,0,1044,0.904
+Warrnambool Animal Shelter,Council pound,Warrnambool,-38.38,142.48,367,571,938,0.697
+Campaspe Shire Council Pound,Council pound,Echuca,-36.13,144.75,335,573,908,0.814
+Mornington Peninsula Shire Animal Shelter,Council pound,Tuerong,-38.3,145.07,447,435,882,0.892
+Victorian Animal Aid Trust East Gippsland,Animal welfare shelter,Bairnsdale,-37.83,147.61,441,423,864,0.832
+Lort Smith,Animal welfare shelter,North Melbourne,-37.8,144.94,186,675,861,0.96
+Forever Friends Animal Rescue,Volunteer rescue group,Seville,-37.78,145.47,218,629,847,0.941
+Victorian Animal Aid Trust Gippsland,Animal welfare shelter,Sale,-38.1,147.07,384,457,841,0.903
+Baw Baw Shire Council Pound,Council pound,Warragul,-38.16,145.93,374,440,814,0.737
+Hobsons Bay City Council Pound,Council pound,Altona,-37.86,144.83,152,524,676,0.898
+Moorabool Shire Council Pound,Council pound,Bacchus Marsh,-37.67,144.44,244,305,549,0.728
+Swan Hill Rural City Council Pound,Council pound,Swan Hill,-35.34,143.55,164,379,543,0.672
+Moira Shire Council Pound,Council pound,Cobram,-35.92,145.65,175,357,532,0.468
+Glenelg Shire Council Pound,Council pound,Portland,-38.34,141.6,305,222,527,0.962
+Colac Otway Shire Council Pound,Council pound,Colac,-38.34,143.58,193,310,503,0.581
+Horsham Rural City Council Pound,Council pound,Horsham,-36.71,142.2,283,212,495,0.876
+Southern Grampians Shire Council Pound,Council pound,Hamilton,-37.74,142.02,180,263,443,0.464
+Central Goldfields Rehoming,Council pound,Maryborough,-37.05,143.74,235,187,422,0.839
+South Gippsland Shire Council Animal Shelter,Council pound,Leongatha,-38.48,145.95,132,290,422,0.762
+Second Chance Animal Rescue,Volunteer rescue group,Craigieburn,-37.6,144.94,141,278,419,0.979
+Save-A-Dog Scheme,Volunteer rescue group,Glen Iris,-37.86,145.05,250,168,418,0.965
+Macedon Ranges Shire Council Pound,Council pound,Kyneton,-37.25,144.45,204,208,412,0.888
+Mount Alexander Animal Welfare,Volunteer rescue group,Castlemaine,-37.06,144.22,185,215,400,0.858
+Corangamite Shire Council Pound,Council pound,Camperdown,-38.23,143.15,106,219,325,0.744
+Bass Coast Shire Council Pound,Council pound,Wonthaggi,-38.61,145.59,192,126,318,0.815
+Manningham City Council Pound,Council pound,Doncaster,-37.78,145.13,113,158,271,0.865
+Gannawarra Shire Council Pound,Council pound,Kerang,-35.73,143.92,120,130,250,0.756
+Benalla Rural City Council Holding Facility,Council pound,Benalla,-36.55,145.98,110,131,241,1.0
+Nillumbik Shire Council Pound,Council pound,Diamond Creek,-37.67,145.16,240,0,240,0.867
+Strathbogie Shire Pound,Council pound,Euroa,-36.75,145.57,77,163,240,0.35
+Northern Grampians Shire Council Pound,Council pound,Stawell,-37.06,142.78,115,125,240,0.817
+Loddon Shire Council Pound,Council pound,Wedderburn,-36.42,143.61,111,106,217,0.747
+Ararat Rural City Council Pound,Council pound,Ararat,-37.28,142.93,110,102,212,0.674
+Hindmarsh Shire Council Pound,Council pound,Nhill,-36.33,141.65,26,167,193,0.249
+Ingrid's Haven,Volunteer rescue group,Broadford,-37.2,145.05,0,186,186,0.838
+Blue Cross Animals Society of Victoria,Volunteer rescue group,Wonga Park,-37.74,145.27,49,130,179,0.944
+Surf Coast Shire Pound,Council pound,Torquay,-38.33,144.32,97,61,158,0.924
+Alpine Shire Council Pound,Council pound,Bright,-36.73,146.96,32,62,94,0.761
+Cat Lovers Ballarat,Volunteer rescue group,Ballarat,-37.56,143.85,0,94,94,0.943
+Murrindindi Shire Council Pound,Council pound,Alexandra,-37.19,145.71,17,65,82,0.829
+Yarriambiack Shire Council Pound,Council pound,Warracknabeal,-36.25,142.39,28,44,72,0.861
+Mansfield Shire Council Pound,Council pound,Mansfield,-37.05,146.08,44,27,71,0.775
+West Wimmera Shire Council Pound,Council pound,Edenhope,-37.04,141.29,19,30,49,0.485
+Torquay and Surfcoast Veterinary Clinics,Other,Torquay,-38.33,144.32,4,35,39,0.856
+Enchanted Pets,Volunteer rescue group,Kilmore,-37.3,144.95,0,36,36,1.0
+Bayside City Council Holding Facility,Council pound,Sandringham,-37.95,145.0,11,1,12,1.0
+Animal Clinic Maffra,Other,Maffra,-37.97,146.98,0,10,10,1.0
+Buloke Shire Council Pound,Council pound,Wycheproof,-36.08,143.23,4,1,5,1.0
+East Doncaster Veterinary Hospital,Other,Doncaster East,-37.78,145.16,0,5,5,1.0
+Bendigo Animal Welfare & Community Services,Volunteer rescue group,Bendigo,-36.76,144.28,0,2,2,0.25

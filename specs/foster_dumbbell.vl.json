@@ -1,0 +1,71 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Rescue groups rely on foster homes",
+    "subtitle": "Animals placed in foster care for every 100 taken in, Victoria, 2025",
+    "anchor": "start"
+  },
+  "data": {"url": "data/vic_foster_by_org_type.csv"},
+  "width": 450,
+  "height": 220,
+  "encoding": {
+    "y": {
+      "field": "org_type",
+      "type": "nominal",
+      "title": null,
+      "sort": ["Council pound", "Animal welfare shelter", "Volunteer rescue group"],
+      "axis": {"labelFontSize": 13, "labelColor": "#1f2a24", "domain": false, "ticks": false, "labelPadding": 8, "grid": true, "gridColor": "#ece7de"}
+    }
+  },
+  "layer": [
+    {
+      "transform": [
+        {"filter": "datum.species !== 'All animals'"},
+        {"aggregate": [{"op": "min", "field": "fostered_share", "as": "low"}, {"op": "max", "field": "fostered_share", "as": "high"}], "groupby": ["org_type"]}
+      ],
+      "mark": {"type": "rule", "strokeWidth": 4, "color": "#d8d2c7"},
+      "encoding": {
+        "x": {
+          "field": "low",
+          "type": "quantitative",
+          "title": "Fostered for every 100 taken in",
+          "scale": {"domain": [0, 0.7]},
+          "axis": {"labelExpr": "format(datum.value * 100, '.0f')", "values": [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7], "grid": true, "gridColor": "#ece7de", "domain": false, "ticks": false}
+        },
+        "x2": {"field": "high"}
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.species !== 'All animals'"},
+        {"calculate": "round(datum.fostered_share * 100)", "as": "per_100"}
+      ],
+      "mark": {"type": "circle", "size": 160, "opacity": 1, "stroke": "#ffffff", "strokeWidth": 1.5, "cursor": "pointer"},
+      "encoding": {
+        "x": {"field": "fostered_share", "type": "quantitative"},
+        "color": {
+          "field": "species",
+          "type": "nominal",
+          "title": null,
+          "scale": {"domain": ["Dogs", "Cats"], "range": ["#2a78d6", "#eb6834"]},
+          "legend": {"orient": "top", "direction": "horizontal", "symbolType": "circle"}
+        },
+        "tooltip": [
+          {"field": "org_type", "title": "Organisation"},
+          {"field": "species", "title": "Animal"},
+          {"field": "per_100", "title": "Fostered per 100 taken in"},
+          {"field": "fostered", "title": "Fostered", "format": ","},
+          {"field": "admitted", "title": "Taken in", "format": ","}
+        ]
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.species === 'All animals'"},
+        {"calculate": "'All: ' + round(datum.fostered_share * 100)", "as": "label"}
+      ],
+      "mark": {"type": "text", "align": "left", "x": 462, "fontSize": 12, "fontWeight": 600, "color": "#1f2a24"},
+      "encoding": {"text": {"field": "label"}}
+    }
+  ]
+}

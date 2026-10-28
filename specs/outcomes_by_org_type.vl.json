@@ -1,0 +1,99 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Pounds pass animals on. Rescue groups find them homes",
+    "subtitle": "What happened to animals leaving Victorian shelters and pounds in 2025, by type of organisation",
+    "anchor": "start"
+  },
+  "data": {
+    "url": "data/vic_outcomes_by_org_type.csv",
+    "format": {"type": "csv", "parse": {"animals": "number", "share": "number", "start": "number", "end": "number"}}
+  },
+  "width": 820,
+  "height": 230,
+  "params": [
+    {
+      "name": "animal",
+      "value": "All animals",
+      "bind": {"input": "radio", "options": ["All animals", "Dogs", "Cats"], "name": "Show: "}
+    }
+  ],
+  "transform": [
+    {"filter": "datum.species === animal"},
+    {"calculate": "(datum.start + datum.end) / 2", "as": "middle"}
+  ],
+  "layer": [
+    {
+      "mark": {"type": "bar", "cursor": "pointer"},
+      "encoding": {
+        "y": {
+          "field": "org_type",
+          "type": "nominal",
+          "title": null,
+          "sort": ["Council pound", "Animal welfare shelter", "Volunteer rescue group"],
+          "axis": {"labelFontSize": 13, "labelColor": "#1f2a24", "domain": false, "ticks": false, "labelPadding": 8},
+          "scale": {"paddingInner": 0.3}
+        },
+        "x": {
+          "field": "start",
+          "type": "quantitative",
+          "title": null,
+          "scale": {"domain": [-0.4, 1]},
+          "axis": {
+            "values": [-0.4, -0.2, 0, 0.2, 0.4, 0.6, 0.8, 1],
+            "labelExpr": "format(abs(datum.value), '.0%')",
+            "grid": true,
+            "gridColor": "#ece7de",
+            "domain": false,
+            "ticks": false
+          }
+        },
+        "x2": {"field": "end"},
+        "color": {
+          "field": "outcome",
+          "type": "nominal",
+          "title": null,
+          "scale": {
+            "domain": ["Back home with owner", "Adopted", "Passed on to another group", "Died in care", "Euthanased"],
+            "range": ["#0b5b54", "#6fb5aa", "#6250d6", "#bdb7ad", "#b8412c"]
+          },
+          "legend": {"orient": "bottom", "direction": "horizontal", "columns": 5, "symbolType": "square", "symbolSize": 140}
+        },
+        "tooltip": [
+          {"field": "org_type", "title": "Organisation"},
+          {"field": "outcome", "title": "Outcome"},
+          {"field": "share", "title": "Share", "format": ".0%"},
+          {"field": "animals", "title": "Animals", "format": ","}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.share >= 0.07"}],
+      "mark": {"type": "text", "fontSize": 12, "fontWeight": 600},
+      "encoding": {
+        "y": {"field": "org_type", "type": "nominal", "sort": ["Council pound", "Animal welfare shelter", "Volunteer rescue group"]},
+        "x": {"field": "middle", "type": "quantitative"},
+        "text": {"field": "share", "format": ".0%"},
+        "color": {
+          "condition": {"test": "datum.outcome === 'Adopted' || datum.outcome === 'Died in care'", "value": "#1f2a24"},
+          "value": "#ffffff"
+        }
+      }
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "rule", "color": "#1f2a24", "strokeWidth": 1.5},
+      "encoding": {"x": {"datum": 0}}
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "text", "align": "right", "y": -10, "fontSize": 12, "fontWeight": 600, "color": "#5b5850"},
+      "encoding": {"x": {"datum": -0.01}, "text": {"value": "← Did not leave alive"}}
+    },
+    {
+      "data": {"values": [{}]},
+      "mark": {"type": "text", "align": "left", "y": -10, "fontSize": 12, "fontWeight": 600, "color": "#5b5850"},
+      "encoding": {"x": {"datum": 0.01}, "text": {"value": "Left alive →"}}
+    }
+  ]
+}
